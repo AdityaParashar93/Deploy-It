@@ -9,7 +9,7 @@ var fs=require('fs');
 var sshclient=require('sshclient');
 var laeh=require('laeh2').leanStacks(true);
 var _x=laeh._x;
-AWS.config.update({accessKeyId:'AKIAIB7EQ6FMW7XCBLEA', secretAccessKey:'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'});
+AWS.config.update({accessKeyId:'**********', secretAccessKey:'************'});
 AWS.config.update({region:'us-west-1'});
 var login = require("./login");
 var ec2=new AWS.EC2({apiVersion:'2016-11-15'});
@@ -17,7 +17,7 @@ var ec2=new AWS.EC2({apiVersion:'2016-11-15'});
 exports.create_instance=function(req,res){
 	req.setTimeout(0);
     console.log("inside create instance method");
-    var params={ ImageId:'ami-06510a66',  InstanceType:'t2.micro',  MinCount:1,  MaxCount:1,  KeyName:"cmpe282" };
+    var params={ ImageId:'ami-06510a66',  InstanceType:'t2.micro',  MinCount:1,  MaxCount:1,  KeyName:"********" };
 
     ec2.runInstances(params,function(err,data){
         if(err) {
@@ -64,7 +64,7 @@ exports.create_instance=function(req,res){
                             host:publicIp,
                             port:22,
                             username:'ubuntu',
-                            privateKey:fs.readFileSync('/Users/Aditya/Dropbox/282/cmpe282.pem'),
+                            privateKey:fs.readFileSync('*************'),
                             debug:true,//optional
                             session:[
                                 {op:'exec',command:'git clone '+req.param("link")},
@@ -257,7 +257,7 @@ exports.reboot_instance=function(req, res) {
 	                            host:publicIp,
 	                            port:22,
 	                            username:'ubuntu',
-	                            privateKey:fs.readFileSync('/Users/Aditya/Dropbox/282/cmpe282.pem'),
+	                            privateKey:fs.readFileSync('**********'),
 	                            debug:true,//optional
 	                            session:[
 	                                {op:'exec',command:'node '+req.param("name")+'/'+req.param("path")}
